@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/AkhiraChain/eth-stalker"
+	"github.com/AkhiraChain/eth-stalker/types"
 )
 
 var clientID string
@@ -15,7 +15,7 @@ func init() {
 }
 
 func main() {
-	c := blockchair.New()
+	c := types.New()
 	c.APIKey = clientID
 	resp, err := c.GetAddressEthAdv("ethereum", "0x3282791d6fd713f1e94f4bfd565eaa78b3a0599d", map[string]string{"limit": "3", "offset": "0"})
 	if err != nil {
