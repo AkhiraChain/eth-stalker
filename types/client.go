@@ -199,10 +199,11 @@ func (c *Client) LoadResponse(path string, i interface{}, options map[string]str
 		}
 		return c.err3(ErrIRS, e, resp)
 	}
-	*/
+	
 	if err := json.Unmarshal(b, &i); err != nil {
 		return c.err3(ErrRPE, err, resp)
 	}
+	*/
 
 	return nil
 }
