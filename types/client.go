@@ -14,7 +14,7 @@ import (
 
 const (
 	clientVersion = "1.0.1"
-	apiRoot       = "https://eth-mainnet.alchemyapi.io/v2/o_bo9q2LMtGvYqr7jsyYSpUrE_azdh9x"
+	apiRoot       = "https://api.blockchair.com/"
 	// Hash used to verify Ethereum hash. TODO: Replace with Deterministic Finite Automaton
 	Hash = "^0x[0-9a-f]{64}$"
 	// UserAgent request header that lets servers and network peers identify the application of the requesting user agent.
