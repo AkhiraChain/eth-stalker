@@ -192,13 +192,14 @@ func (c *Client) LoadResponse(path string, i interface{}, options map[string]str
 		return c.err3(ErrCRR, e, resp)
 	}
 
+	/*
 	if resp.Status[0] != '2' {
 		if resp.Status == "402 Payment Required" {
 			return c.err3(ErrRLR, e, resp)
 		}
 		return c.err3(ErrIRS, e, resp)
 	}
-
+	*/
 	if err := json.Unmarshal(b, &i); err != nil {
 		return c.err3(ErrRPE, err, resp)
 	}
