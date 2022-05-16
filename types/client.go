@@ -1,8 +1,9 @@
 package types
 
 import (
-	"encoding/json"
+	// "encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -204,6 +205,7 @@ func (c *Client) LoadResponse(path string, i interface{}, options map[string]str
 		return c.err3(ErrRPE, err, resp)
 	}
 	*/
+	fmt.Println(b)
 
 	return nil
 }
