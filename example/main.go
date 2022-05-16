@@ -26,7 +26,6 @@ func main() {
 		fmt.Printf("Type: %v\n", resp.Data[i].Address.Type)
 		fmt.Printf("Spent in USD: %v\n", resp.Data[i].Address.SpentUsd)
 		fmt.Printf("Number of transactions: %v\n", resp.Data[i].Address.TransactionCount)
-		fmt.Printf("Vmomom: %v\n", resp.Data[i].Address.SpentUsd)
 		for j := range resp.Data[i].Calls {
 			fmt.Printf("\nTransaction number %v:\n", j+1)
 			fmt.Printf("ID: %v\n", resp.Data[i].Calls[j].BlockID)

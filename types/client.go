@@ -1,9 +1,8 @@
 package types
 
 import (
-	// "encoding/json"
+	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -24,18 +23,18 @@ const (
 
 // Errors it is a set of errors returned when working with the package.
 var (
-	ErrTHW = errors.New("Eth-Stalker: transaction hash is wrong")
-	ErrERC = errors.New("Eth-Stalker: ERC-20 token is wrong")
-	ErrSC  = errors.New("Eth-Stalker: the Bitcoin-like cryptocurrency is not supported")
-	ErrSCE = errors.New("Eth-Stalker: the Ethereum cryptocurrency is not supported")
-	ErrSCG = errors.New("Eth-Stalker: the cryptocurrency is not supported")
-	ErrCGD = errors.New("Eth-Stalker: cannot get data on url")
-	ErrCRR = errors.New("Eth-Stalker: could not read answer response")
-	ErrRPE = errors.New("Eth-Stalker: response parsing error")
-	ErrIRS = errors.New("Eth-Stalker: incorrect response status")
-	ErrRLR = errors.New("Eth-Stalker: error 402, rate limit reached for free tier")
-	ErrMAX = errors.New("Eth-Stalker: the maximum number of addresses is 100")
-	ErrETH = errors.New("Eth-Stalker: can only handle one Ethereum cryptocurrency address")
+	ErrTHW = errors.New("blockchair: transaction hash is wrong")
+	ErrERC = errors.New("blockchair: ERC-20 token is wrong")
+	ErrSC  = errors.New("blockchair: the Bitcoin-like cryptocurrency is not supported")
+	ErrSCE = errors.New("blockchair: the Ethereum cryptocurrency is not supported")
+	ErrSCG = errors.New("blockchair: the cryptocurrency is not supported")
+	ErrCGD = errors.New("blockchair: cannot get data on url")
+	ErrCRR = errors.New("blockchair: could not read answer response")
+	ErrRPE = errors.New("blockchair: response parsing error")
+	ErrIRS = errors.New("blockchair: incorrect response status")
+	ErrRLR = errors.New("blockchair: error 402, rate limit reached for free tier")
+	ErrMAX = errors.New("blockchair: the maximum number of addresses is 100")
+	ErrETH = errors.New("blockchair: can only handle one Ethereum cryptocurrency address")
 )
 
 // GetSupportedCrypto List of supported Bitcoin-like crypto.
@@ -131,7 +130,7 @@ var countRemaining = 30
 // parseRate parses rate related headers from http response.
 func parseRate(apikey string) RateLimit {
 	var rlVal RateLimit
-	// TODO: make it more useful, Eth-Stalker has no rate limit in headers
+	// TODO: make it more useful, Blockchair has no rate limit in headers
 	// for users with API key we can call the Premium API
 	if apikey != "" {
 		rlVal.Limit = 1
@@ -193,19 +192,16 @@ func (c *Client) LoadResponse(path string, i interface{}, options map[string]str
 		return c.err3(ErrCRR, e, resp)
 	}
 
-	/*
 	if resp.Status[0] != '2' {
 		if resp.Status == "402 Payment Required" {
 			return c.err3(ErrRLR, e, resp)
 		}
 		return c.err3(ErrIRS, e, resp)
 	}
-	
+
 	if err := json.Unmarshal(b, &i); err != nil {
 		return c.err3(ErrRPE, err, resp)
 	}
-	*/
-	fmt.Println(b)
 
 	return nil
 }
@@ -218,7 +214,7 @@ func New() *Client {
 // SetClient http client setter.
 func (c *Client) SetClient(client *http.Client) {
 	if client == nil {
-		panic("Eth-Stalker: impossible install the client as nil")
+		panic("blockchair: impossible install the client as nil")
 	}
 	c.client = client
 }
